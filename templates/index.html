@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>喝水记录助手</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4a90e2;
+            text-align: center;
+        }
+        .total {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 5px;
+        }
+        .form {
+            text-align: center;
+            margin: 20px 0;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+        .records {
+            margin-top: 30px;
+        }
+        .record {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #4a90e2;
+        }
+        .record-time {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>喝水记录助手</h1>
+        
+        <div class="total">
+            今日喝水总量: <strong>{{.total}} ml</strong>
+        </div>
+
+        <div class="form">
+            <form action="/add" method="post">
+                <input type="number" name="amount" placeholder="毫升" min="1" required>
+                <button type="submit">记录</button>
+            </form>
+        </div>
+
+        <div class="records">
+            <h3>今日记录:</h3>
+            {{range .records}}
+            <div class="record">
+                <div>{{.Amount}} ml</div>
+                <div class="record-time">{{.Time.Format "15:04:05"}}</div>
+            </div>
+            {{else}}
+            <p>今天还没有喝水记录</p>
+            {{end}}
+        </div>
+    </div>
+</body>
+</html>
