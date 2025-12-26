@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  drink-water-helper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: drink-water-helper
+    ports:
+      - "8080:8080"
+    volumes:
+      # 映射SQLite数据库文件到外部目录
+      - ./water_records.db:/app/water_records.db
+      # 映射静态文件目录
+      - ./static:/app/static
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
