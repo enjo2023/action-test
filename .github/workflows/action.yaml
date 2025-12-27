@@ -1,4 +1,4 @@
-name: 构建项目
+name: 构建项目并且推送到dockerhub
 
 on: push
 
@@ -10,11 +10,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name:
-      run: echo "hello world"
+    - name: 登录DockerHub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name:
-      run: pwd
-      
-    - name:
-      run: ls      
+    - name: 构建并推送Docker镜像
+      uses: docker/build-push-action@v5
+      with:
+        push: true
+        taggs: zhanzk/drink_water_helper:latest
