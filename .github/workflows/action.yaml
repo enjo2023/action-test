@@ -1,0 +1,20 @@
+name: 构建项目
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 构建项目
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name:
+      run: echo "hello world"
+
+    - name:
+      run: pwd
+      
+    - name:
+      run: ls      
