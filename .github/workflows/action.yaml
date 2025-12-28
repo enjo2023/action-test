@@ -20,4 +20,4 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        taggs: zhanzk/drink_water_helper:latest
+        tags: zhanzk/drink_water_helper:latest
