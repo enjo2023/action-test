@@ -1,2 +1,4 @@
 water_records.db
 drink_water_helper.exe
+*.exe
+.vscode

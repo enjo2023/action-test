@@ -63,11 +63,11 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		// 计算今天的喝水总量
 		total := getTodayTotal()
-
+		records := getTodayRecords()
 		// 渲染HTML模板
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"total":   total,
-			"records": getTodayRecords(),
+			"records": records,
 		})
 	})
 
@@ -124,7 +124,7 @@ func getTodayRecords() []WaterRecord {
 		}
 
 		// 解析时间
-		record.Time, err = time.Parse("2006-01-02 15:04:05", timeStr)
+		record.Time, err = time.Parse(time.RFC3339Nano, timeStr)
 		if err != nil {
 			fmt.Println("解析时间失败:", err)
 			continue
